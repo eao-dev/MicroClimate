@@ -1,0 +1,24 @@
+﻿@{ 
+    Layout = "~/Views/Shared/_LayoutOther.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width" />
+    <title>Информация</title>
+</head>
+<body>
+        @{
+            if (@ViewBag.Error != null)
+            {
+                <h1>Ошибка</h1>
+                <h4>@ViewBag.Error</h4>
+            }
+            else if (ViewBag.Message != null)
+            {
+                <h4>@ViewBag.Message</h4>
+            }
+        }
+</body>
+</html>

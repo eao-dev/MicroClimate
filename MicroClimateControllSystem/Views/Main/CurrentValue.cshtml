@@ -1,0 +1,68 @@
+﻿@model MicroClimateControllSystem.Models.SensorData
+@Styles.Render("~/Content/css")
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Temp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Humidity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gas)
+        </th>
+        <th></th>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.Temp)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Humidity)
+        </td>
+    <td></td>
+
+    </tr>
+    <tr>
+        <td>
+            @{
+                int value = Model.Sensor.NormalTemp - Model.Temp;
+                if (value > 0)
+                {
+                    <div id="WarningValue">Ниже на @value градусов</div>
+                }
+                else
+                {
+                    <p>Норма: @Model.Sensor.NormalTemp </p>
+                }
+            }
+        </td>
+        <td>
+            @{
+                value = Model.Humidity - Model.Sensor.NormalHumidity;
+                if (value > 0)
+                {
+                    <div id="WarningValue">Превышение на @value</div>
+                }
+                else
+                {
+                    <p>Норма: @Model.Sensor.NormalHumidity </p>
+                }
+            }
+        </td>
+        <td>
+            @{ if (Model.Gas)
+                {
+                    <div id="WarningValue">обнаружено</div>
+                }
+                else
+                {
+                    <p>не обнаружено</p>
+                } }
+        </td>
+    </tr>
+
+</table>

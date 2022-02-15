@@ -1,0 +1,8 @@
+﻿#WarningValue {
+    color: red;
+    font-weight: 600;
+}
+
+table.smalltable{
+    width: 20%; /* Ширина таблицы */
+}

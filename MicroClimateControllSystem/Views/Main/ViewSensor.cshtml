@@ -1,0 +1,41 @@
+﻿@model MicroClimateControllSystem.Models.Sensor
+
+@{
+    ViewBag.Title = "Просмотр данных датчика";
+}
+
+<br>
+<div>
+    <table class="smalltable" border="0">
+        <tr>
+            <td>ID-устройства </td>
+            <td><b>@Html.DisplayFor(model => model.SensorID)</b></td>
+        </tr>
+        <tr>
+            <td>Расположение </td>
+            <td><b>@Html.DisplayFor(model => model.Location)</b></td>
+        </tr>
+        <tr>
+            <td>Дата установки </td>
+            <td><b>@Html.DisplayFor(model => model.Date)</b></td>
+        </tr>
+    </table>
+</div>
+
+<br><br>
+
+@{
+    try
+    {
+        MicroClimateControllSystem.Models.SensorData sensorData = Model.SensorData.Last();
+        Html.RenderPartial("CurrentValue", sensorData);
+        Html.RenderPartial("Graphs", sensorData);
+
+        List<MicroClimateControllSystem.Models.SensorData> listData = Model.SensorData.ToList();
+        Html.RenderPartial("Stats", listData);
+    }
+    catch
+    {
+        <center><b>Данных с датчиков не поступало!</b></center>
+    }
+}

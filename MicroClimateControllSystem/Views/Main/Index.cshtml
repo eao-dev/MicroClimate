@@ -1,0 +1,43 @@
+﻿@model IEnumerable<MicroClimateControllSystem.Models.Sensor>
+
+@{
+    ViewBag.Title = "Главная";
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+
+        <th>Просмотр</th>
+        <th>Конфигурация</th>
+        <th>Удалить датчик</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                <a href="/Main/ViewSensor/?SensorID=@item.SensorID">Просмотр</a>
+            </td>
+            <td>
+                <a href="/Main/Edit/?SensorID=@item.SensorID">Изменить</a>
+            </td>
+            <td>
+                <a href="/Main/DeleteSensor/?SensorID=@item.SensorID">Удалить</a>
+            </td>
+        </tr>
+    }
+
+</table>

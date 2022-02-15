@@ -1,0 +1,23 @@
+﻿@model MicroClimateControllSystem.Models.SensorData
+
+<script src="https://www.google.com/jsapi"></script>
+<script>
+    google.load("visualization", "1", { packages: ["corechart"] });
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Газ', 'Нормальное значение', 'Текущее значение'],
+            ['@Html.DisplayNameFor(model => model.Temp)',  @Model.Sensor.NormalTemp, @Model.Temp],
+            ['@Html.DisplayNameFor(model => model.Humidity)',  @Model.Sensor.NormalHumidity, @Model.Humidity]
+        ]);
+        var options = {
+            title: 'Показания'
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById('Graphs'));
+        chart.draw(data, options);
+    }
+</script>
+
+<body>
+    <div id="Graphs" style="width: 950px; height: 400px;"></div>
+</body>

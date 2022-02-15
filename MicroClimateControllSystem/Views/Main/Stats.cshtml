@@ -1,0 +1,33 @@
+﻿@model IEnumerable<MicroClimateControllSystem.Models.SensorData>
+
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Время', 'Температура', 'Влажность'],
+            @foreach (var item in Model)
+            {
+                @Html.Raw("['" + item.DateTime.ToString() + "', " + item.Temp.ToString() + ", " + item.Humidity.ToString() + "],");
+            }
+        ]);
+
+        var options = {
+          title: 'Статистика температуры и влажности',
+          hAxis: {title: 'Время',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+                var chart = new google.visualization.AreaChart(document.getElementById('temp_humidity_chart'));
+                chart.draw(data, options);
+      }
+    </script>
+</head>
+<body>
+    <div id="temp_humidity_chart" style="width: 100%; height: 500px;"></div>
+</body>
+
+
+
